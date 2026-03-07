@@ -1,0 +1,9 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link-container {
+  display: flex;
+  gap: 1rem;
+}

@@ -1,18 +1,18 @@
-import "./App.css";
+import styles from "./App.module.css";
 import { Link } from "react-router";
 import homeImage from "../public/home.jpg";
 
 function App() {
   return (
-    <>
-      <div className="hero-image-container">
+    <main className={styles["container"]}>
+      <div className={styles["hero-container"]}>
         <img
           src={homeImage}
-          className="hero-image"
+          className={styles["hero-image"]}
           alt="Perfume bottle balanced on wood pieces"
         />
       </div>
-      <div className="welcome-message">
+      <div className={styles["welcome-message"]}>
         <h1>Fables</h1>
         <p>
           Explore our range of science-backed formulas engineered to nourish
@@ -22,7 +22,7 @@ function App() {
           <Link to="shop">Discover our collection</Link>
         </button>
       </div>
-    </>
+    </main>
   );
 }
 
