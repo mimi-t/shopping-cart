@@ -6,10 +6,10 @@ const Navbar = () => {
     <nav className={styles["navbar"]}>
       <div className={styles["link-container"]}>
         <Link to="/">Fables</Link>
-        <Link to="shop">Shop all</Link>
+        <Link to="/shop">Shop all</Link>
       </div>
       <div className={styles["link-container"]}>
-        <Link to="cart">Cart</Link>
+        <Link to="/cart">Cart</Link>
       </div>
     </nav>
   );
