@@ -1,12 +1,40 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
+
 const ProductCard = ({ title, description, price, image }) => {
+  const [quantity, setQuantity] = useState(0);
+  const decrementQuantity = () => {
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
+    }
+  };
+  const incrementQuantity = () => {
+    if (quantity < 99) {
+      setQuantity(quantity + 1);
+    }
+  };
+  const handleQuantity = (event) => {
+    setQuantity(event.target.value);
+  };
+
   return (
     <div className="card">
       <img src={image} />
       <p>{title}</p>
       <p>{description}</p>
       <p>${price}</p>
-      <p>Quantity</p>
+      <div className="quantity">
+        <button onClick={decrementQuantity}>-</button>
+        <input
+          type="number"
+          name="quantity"
+          value={quantity}
+          onChange={handleQuantity}
+          min={0}
+          max={99}
+        />
+        <button onClick={incrementQuantity}>+</button>
+      </div>
       <button>Add to cart</button>
     </div>
   );
