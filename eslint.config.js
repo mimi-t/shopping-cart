@@ -18,9 +18,14 @@ export default defineConfig([
       reactPlugin.configs.flat.recommended,
       reactPlugin.configs.flat["jsx-runtime"],
     ],
+
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        vi: true,
+        vitest: true,
+      },
       parserOptions: {
         ecmaVersion: "latest",
         ecmaFeatures: { jsx: true },

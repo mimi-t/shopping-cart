@@ -20,9 +20,9 @@ const ProductCard = ({ title, description, price, image }) => {
   return (
     <div className="card">
       <img src={image} />
-      <p>{title}</p>
-      <p>{description}</p>
-      <p>${price}</p>
+      <p className="title">{title}</p>
+      <p className="description">{description}</p>
+      <p className="price">${price}</p>
       <div className="quantity">
         <button onClick={decrementQuantity}>-</button>
         <input
@@ -35,7 +35,7 @@ const ProductCard = ({ title, description, price, image }) => {
         />
         <button onClick={incrementQuantity}>+</button>
       </div>
-      <button>Add to cart</button>
+      <button className="add-to-cart">Add to cart</button>
     </div>
   );
 };

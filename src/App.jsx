@@ -9,7 +9,7 @@ function App() {
         <img
           src={homeImage}
           className={styles["hero-image"]}
-          alt="Perfume bottle balanced on wood pieces"
+          alt="Perfume bottle balanced on wood"
         />
       </div>
       <div className={styles["welcome-message"]}>
