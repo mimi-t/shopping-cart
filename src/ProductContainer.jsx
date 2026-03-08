@@ -39,12 +39,13 @@ const ProductContainer = () => {
   }
 
   return (
-    <div className={styles["container"]}>
+    <div className={styles["container"]} data-testid="product-container">
       {products.map((product) => {
         return (
           <ProductCard
             key={product.id}
             title={product.title}
+            description={product.description}
             price={product.price}
             image={product.thumbnail}
           />

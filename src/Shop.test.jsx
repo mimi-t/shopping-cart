@@ -1,0 +1,10 @@
+import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router";
+import Shop from "./Shop.jsx";
+
+describe("Shop page", () => {
+  it("renders shop page", () => {
+    render(<Shop />, { wrapper: MemoryRouter });
+    expect(screen.getByRole("heading")).toHaveTextContent("Shop");
+  });
+});
