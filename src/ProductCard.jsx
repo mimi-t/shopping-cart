@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import styles from "./ProductCard.module.css";
 
 const ProductCard = ({ title, description, price, image }) => {
   const [quantity, setQuantity] = useState(0);
@@ -18,24 +19,28 @@ const ProductCard = ({ title, description, price, image }) => {
   };
 
   return (
-    <div className="card">
-      <img src={image} />
-      <p className="title">{title}</p>
-      <p className="description">{description}</p>
-      <p className="price">${price}</p>
-      <div className="quantity">
-        <button onClick={decrementQuantity}>-</button>
-        <input
-          type="number"
-          name="quantity"
-          value={quantity}
-          onChange={handleQuantity}
-          min={0}
-          max={99}
-        />
-        <button onClick={incrementQuantity}>+</button>
+    <div className={styles["card"]}>
+      <div className={styles["details"]}>
+        <img src={image} />
+        <h2 className="title">{title}</h2>
+        <p className={styles["description"]}>{description}</p>
       </div>
-      <button className="add-to-cart">Add to cart</button>
+      <div className={styles["actions"]}>
+        <p className={styles["price"]}>${price}</p>
+        <div className="quantity">
+          <button onClick={decrementQuantity}>-</button>
+          <input
+            type="number"
+            name="quantity"
+            value={quantity}
+            onChange={handleQuantity}
+            min={0}
+            max={99}
+          />
+          <button onClick={incrementQuantity}>+</button>
+        </div>
+        <button className="add-to-cart">Add to cart</button>
+      </div>
     </div>
   );
 };

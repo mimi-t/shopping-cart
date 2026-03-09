@@ -4,10 +4,10 @@ import styles from "./Shop.module.css";
 
 const Shop = () => {
   return (
-    <div className={styles["container"]}>
+    <div className={styles["shop-container"]}>
       <Navbar />
-      <main>
-        <h1>Shop</h1>
+      <main className={styles["main-content"]}>
+        <h1 className={styles["heading"]}>Shop</h1>
         <ProductContainer />
       </main>
     </div>

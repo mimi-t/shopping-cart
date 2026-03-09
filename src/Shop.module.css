@@ -1,3 +1,11 @@
-.container {
-  padding: 2rem;
+.shop-container {
+  display: grid;
+  place-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.heading {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #acacac;
 }
