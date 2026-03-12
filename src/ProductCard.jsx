@@ -1,21 +1,33 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CartContext } from "./Contexts.js";
 import styles from "./ProductCard.module.css";
 
-const ProductCard = ({ title, description, price, image }) => {
+const ProductCard = ({ id, title, description, price, image }) => {
   const [quantity, setQuantity] = useState(0);
+  const { addToCart } = useContext(CartContext);
+
   const decrementQuantity = () => {
     if (quantity > 0) {
       setQuantity(quantity - 1);
     }
   };
+
   const incrementQuantity = () => {
     if (quantity < 99) {
       setQuantity(quantity + 1);
     }
   };
+
   const handleQuantity = (event) => {
     setQuantity(event.target.value);
+  };
+
+  const handleAddToCart = () => {
+    if (quantity > 0) {
+      addToCart(id, quantity);
+    }
+    setQuantity(0);
   };
 
   return (
@@ -39,7 +51,9 @@ const ProductCard = ({ title, description, price, image }) => {
           />
           <button onClick={incrementQuantity}>+</button>
         </div>
-        <button className="add-to-cart">Add to cart</button>
+        <button className="add-to-cart" onClick={handleAddToCart}>
+          Add to cart
+        </button>
       </div>
     </div>
   );
@@ -58,6 +72,7 @@ const isImageUrl = (props, propName, componentName) => {
 };
 
 ProductCard.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   price: PropTypes.number.isRequired,
