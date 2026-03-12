@@ -18,7 +18,7 @@ function Home() {
           your skin.
         </p>
         <button>
-          <Link to="shop">Discover our collection</Link>
+          <Link to="/shop">Discover our collection</Link>
         </button>
       </div>
     </main>
