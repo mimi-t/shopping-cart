@@ -69,4 +69,34 @@ describe("Product card", () => {
     await user.click(decrementButton);
     expect(quantityInput).toHaveValue(0);
   });
+
+  it("adding item to cart resets quantity", async () => {
+    const user = userEvent.setup();
+    const product = {
+      id: 1,
+      title: "Essence Mascara Lash Princess",
+      description:
+        "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
+      price: 9.99,
+      thumbnail:
+        "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/thumbnail.webp",
+    };
+
+    render(
+      <ProductCard
+        key={product.id}
+        title={product.title}
+        description={product.description}
+        price={product.price}
+        image={product.thumbnail}
+      />,
+    );
+
+    const quantityInput = screen.getByRole("spinbutton");
+    await user.type(quantityInput, "2");
+    expect(quantityInput).toHaveValue(2);
+    const addToCartButton = screen.getByRole("button", { name: "Add to cart" });
+    await user.click(addToCartButton);
+    expect(quantityInput).toHaveValue(0);
+  });
 });
