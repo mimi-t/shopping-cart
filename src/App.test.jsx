@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
-import App from "./App.jsx";
+import Home from "./Home.jsx";
 
 describe("Home page", () => {
   it("renders home page", () => {
-    render(<App />, { wrapper: MemoryRouter });
+    render(<Home />, { wrapper: MemoryRouter });
 
     const heroImage = screen.getByRole("img", {
       alt: "Perfume bottle balanced on wood",
