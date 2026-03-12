@@ -6,6 +6,7 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import { defineConfig, globalIgnores } from "eslint/config";
 import vitest from "@vitest/eslint-plugin";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
+import testingLibrary from "eslint-plugin-testing-library";
 
 export default defineConfig([
   globalIgnores(["dist"]),
@@ -43,6 +44,10 @@ export default defineConfig([
       "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
       ...vitest.configs.recommended.rules,
     },
+  },
+  {
+    files: ["**/*.test.jsx"],
+    ...testingLibrary.configs["flat/react"],
   },
   eslintConfigPrettier,
 ]);
