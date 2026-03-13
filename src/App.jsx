@@ -4,10 +4,10 @@ import { useState } from "react";
 import { CartContext } from "./Contexts";
 
 function App() {
-  const [cart, setCart] = useState([]);
+  const [products, setProducts] = useState([]);
 
-  const addToCart = (id, quantity) => {
-    const updatedCart = [...cart];
+  const addOrUpdateCart = (id, quantity) => {
+    const updatedCart = [...products];
     const index = updatedCart.findIndex((item) => item.id === id);
     if (index === -1) {
       // this item isn't in the cart, add it with quantity
@@ -16,11 +16,20 @@ function App() {
       // this item already exists in the cart, update quantity
       updatedCart[index].quantity += quantity;
     }
-    setCart(updatedCart);
+    setProducts(updatedCart);
+  };
+
+  const deleteFromCart = (id) => {
+    const index = products.findIndex((item) => item.id === id);
+    if (index !== -1) {
+      const updatedCart = [...products];
+      updatedCart.splice(index, 1);
+      setProducts(updatedCart);
+    }
   };
 
   return (
-    <CartContext value={{ cart, addToCart }}>
+    <CartContext value={{ products, addOrUpdateCart, deleteFromCart }}>
       <Navbar />
       <Outlet />
     </CartContext>

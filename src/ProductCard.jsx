@@ -2,30 +2,15 @@ import PropTypes from "prop-types";
 import { useState, useContext } from "react";
 import { CartContext } from "./Contexts.js";
 import styles from "./ProductCard.module.css";
+import QuantityInput from "./QuantityInput.jsx";
 
 const ProductCard = ({ id, title, description, price, image }) => {
   const [quantity, setQuantity] = useState(0);
-  const { addToCart } = useContext(CartContext);
-
-  const decrementQuantity = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
-    }
-  };
-
-  const incrementQuantity = () => {
-    if (quantity < 99) {
-      setQuantity(quantity + 1);
-    }
-  };
-
-  const handleQuantity = (event) => {
-    setQuantity(event.target.value);
-  };
+  const { addOrUpdateCart } = useContext(CartContext);
 
   const handleAddToCart = () => {
     if (quantity > 0) {
-      addToCart(id, quantity);
+      addOrUpdateCart(id, quantity);
     }
     setQuantity(0);
   };
@@ -39,18 +24,7 @@ const ProductCard = ({ id, title, description, price, image }) => {
       </div>
       <div className={styles["actions"]}>
         <p className={styles["price"]}>${price}</p>
-        <div className="quantity">
-          <button onClick={decrementQuantity}>-</button>
-          <input
-            type="number"
-            name="quantity"
-            value={quantity}
-            onChange={handleQuantity}
-            min={0}
-            max={99}
-          />
-          <button onClick={incrementQuantity}>+</button>
-        </div>
+        <QuantityInput quantity={quantity} updateQuantity={setQuantity} />
         <button className="add-to-cart" onClick={handleAddToCart}>
           Add to cart
         </button>
