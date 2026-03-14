@@ -1,0 +1,4 @@
+const MIN_QUANTITY = 0;
+const MAX_QUANTITY = 99;
+
+export { MIN_QUANTITY, MAX_QUANTITY };

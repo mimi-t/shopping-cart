@@ -1,20 +1,63 @@
 import PropTypes from "prop-types";
+import { MIN_QUANTITY, MAX_QUANTITY } from "./Constants";
 
-function QuantityInput({ quantity, updateQuantity }) {
+function QuantityInput({
+  quantity,
+  setQuantity,
+  updateQuantityInCart,
+  deleteFromCart,
+  setError,
+}) {
   const decrementQuantity = () => {
-    if (quantity > 0) {
-      updateQuantity(quantity - 1);
+    if (quantity > MIN_QUANTITY) {
+      let newQuantity = quantity - 1;
+      if (quantity > MAX_QUANTITY) {
+        // decrementing a quantity that is over the max value will set the quantity to the max value
+        setError(null);
+        newQuantity = MAX_QUANTITY;
+      }
+      if (newQuantity === 0 && deleteFromCart) {
+        deleteFromCart();
+      } else if (updateQuantityInCart) {
+        updateQuantityInCart(newQuantity);
+      } else {
+        setQuantity(newQuantity);
+      }
     }
   };
 
   const incrementQuantity = () => {
-    if (quantity < 99) {
-      updateQuantity(quantity + 1);
+    if (quantity < MAX_QUANTITY) {
+      let newQuantity = quantity + 1;
+      if (quantity > MAX_QUANTITY) {
+        // incrementing a quantity that is under the min value will set the quantity to the min value
+        setError(null);
+        newQuantity = MIN_QUANTITY;
+      }
+      if (updateQuantityInCart) {
+        updateQuantityInCart(newQuantity);
+      } else {
+        setQuantity(newQuantity);
+      }
     }
   };
 
-  const handleQuantity = (event) => {
-    updateQuantity(event.target.value);
+  const handleChangeQuantity = (event) => {
+    setError(null);
+    setQuantity(parseInt(event.target.value));
+  };
+
+  const updateCartQuantity = () => {
+    if (quantity === 0) {
+      deleteFromCart();
+    } else {
+      // if invalid value show error message , also need to update for onaddtocart in ProductCard
+      if (quantity < MIN_QUANTITY || quantity > MAX_QUANTITY) {
+        setError("Invalid quantity, please enter a number between 0 to 99.");
+      } else {
+        updateQuantityInCart(quantity);
+      }
+    }
   };
 
   return (
@@ -24,9 +67,13 @@ function QuantityInput({ quantity, updateQuantity }) {
         type="number"
         name="quantity"
         value={quantity}
-        onChange={handleQuantity}
-        min={0}
-        max={99}
+        onKeyDown={(event) =>
+          ["e", "E", "+", "-"].includes(event.key) && event.preventDefault()
+        }
+        onChange={handleChangeQuantity}
+        onBlur={() => updateCartQuantity()}
+        min={MIN_QUANTITY}
+        max={MAX_QUANTITY}
       />
       <button onClick={incrementQuantity}>+</button>
     </div>
@@ -35,7 +82,10 @@ function QuantityInput({ quantity, updateQuantity }) {
 
 QuantityInput.propTypes = {
   quantity: PropTypes.number.isRequired,
-  updateQuantity: PropTypes.func.isRequired,
+  setQuantity: PropTypes.func.isRequired,
+  updateQuantityInCart: PropTypes.func,
+  deleteFromCart: PropTypes.func,
+  setError: PropTypes.func,
 };
 
 export default QuantityInput;

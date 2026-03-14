@@ -6,11 +6,12 @@ import QuantityInput from "./QuantityInput.jsx";
 
 const ProductCard = ({ id, title, description, price, image }) => {
   const [quantity, setQuantity] = useState(0);
-  const { addOrUpdateCart } = useContext(CartContext);
+  const [quantityError, setQuantityError] = useState(null);
+  const { addToCart } = useContext(CartContext);
 
   const handleAddToCart = () => {
     if (quantity > 0) {
-      addOrUpdateCart(id, quantity);
+      addToCart(id, quantity);
     }
     setQuantity(0);
   };
@@ -24,10 +25,19 @@ const ProductCard = ({ id, title, description, price, image }) => {
       </div>
       <div className={styles["actions"]}>
         <p className={styles["price"]}>${price}</p>
-        <QuantityInput quantity={quantity} updateQuantity={setQuantity} />
-        <button className="add-to-cart" onClick={handleAddToCart}>
+        <QuantityInput
+          quantity={quantity}
+          setQuantity={setQuantity}
+          setError={setQuantityError}
+        />
+        <button
+          className="add-to-cart"
+          onClick={handleAddToCart}
+          disabled={quantityError !== null}
+        >
           Add to cart
         </button>
+        {quantityError && <div>{quantityError}</div>}
       </div>
     </div>
   );
