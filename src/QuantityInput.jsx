@@ -54,7 +54,7 @@ function QuantityInput({
       // if invalid value show error message , also need to update for onaddtocart in ProductCard
       if (quantity < MIN_QUANTITY || quantity > MAX_QUANTITY) {
         setError("Invalid quantity, please enter a number between 0 to 99.");
-      } else {
+      } else if (updateQuantityInCart) {
         updateQuantityInCart(quantity);
       }
     }
