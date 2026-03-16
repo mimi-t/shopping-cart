@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { useState, useContext } from "react";
 import { CartContext } from "./Contexts.js";
-import styles from "./ProductCard.module.css";
+import styles from "./ShopCard.module.css";
 import QuantityInput from "./QuantityInput.jsx";
 
-const ProductCard = ({ id, title, description, price, image }) => {
+const ShopCard = ({ id, title, description, price, image }) => {
   const [quantity, setQuantity] = useState(0);
   const [quantityError, setQuantityError] = useState(null);
   const { addToCart } = useContext(CartContext);
@@ -55,7 +55,7 @@ const isImageUrl = (props, propName, componentName) => {
   }
 };
 
-ProductCard.propTypes = {
+ShopCard.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
@@ -63,4 +63,4 @@ ProductCard.propTypes = {
   image: isImageUrl,
 };
 
-export default ProductCard;
+export default ShopCard;

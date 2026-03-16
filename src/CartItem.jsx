@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import QuantityInput from "./QuantityInput";
 import { CartContext } from "./Contexts";
 
-function CartProduct({
+function CartItem({
   id,
   title,
   price,
@@ -37,7 +37,7 @@ function CartProduct({
   );
 }
 
-CartProduct.propTypes = {
+CartItem.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
@@ -46,4 +46,4 @@ CartProduct.propTypes = {
   deleteProduct: PropTypes.func.isRequired,
 };
 
-export default CartProduct;
+export default CartItem;

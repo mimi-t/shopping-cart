@@ -1,12 +1,12 @@
 import { useEffect, useState, useContext } from "react";
 import { CartContext } from "./Contexts";
-import CartProduct from "./CartProduct";
+import CartItem from "./CartItem";
 
 const SHOP_API = "https://dummyjson.com/";
 
-function Cart() {
+function CartContainer() {
   const { products, deleteFromCart } = useContext(CartContext);
-  const [detailedProducts, setDetailedProducts] = useState(null);
+  const [detailedProducts, setDetailedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -18,7 +18,7 @@ function Cart() {
         for (const product of products) {
           const response = await fetch(`${SHOP_API}/products/${product.id}`);
           if (!response.ok) {
-            return new Error(`Response status: ${response.status}`);
+            throw new Error(`Response status: ${response.status}`);
           }
           const newProduct = await response.json();
           cartProducts.push({
@@ -49,12 +49,11 @@ function Cart() {
   }
 
   return (
-    <main>
-      <h1>Cart</h1>
-      {detailedProducts.length <= 0 && "Your cart is empty."}
+    <>
+      {detailedProducts.length <= 0 && <p>Your cart is empty.</p>}
       {detailedProducts.map((product) => {
         return (
-          <CartProduct
+          <CartItem
             key={product.id}
             {...product}
             initialQuantity={product.quantity}
@@ -62,8 +61,8 @@ function Cart() {
           />
         );
       })}
-    </main>
+    </>
   );
 }
 
-export default Cart;
+export default CartContainer;

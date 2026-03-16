@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import ProductContainer from "./ProductContainer.jsx";
+import ShopContainer from "./ShopContainer.jsx";
 
 describe("Product container", () => {
   it("successfully fetch and render products", async () => {
@@ -34,34 +34,29 @@ describe("Product container", () => {
     ];
     vi.stubGlobal(
       "fetch",
-      vi.fn(() =>
-        Promise.resolve({
-          ok: true,
-          json: () => Promise.resolve({ products }),
-        }),
-      ),
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ products }),
+      }),
     );
 
-    render(<ProductContainer />);
+    render(<ShopContainer />);
     expect(await screen.findByTestId("product-container")).toBeInTheDocument();
     expect(screen.getAllByRole("img")).toHaveLength(products.length);
   });
 
   it("display loading message while products are still being fetched", () => {
-    vi.stubGlobal(
-      "fetch",
-      vi.fn(() => new Promise(() => {})),
-    );
-    render(<ProductContainer />);
+    vi.stubGlobal("fetch", vi.fn().mockReturnValue(new Promise(() => {})));
+    render(<ShopContainer />);
     expect(screen.getByRole("paragraph")).toHaveTextContent("Loading...");
   });
 
   it("display error message when product fetch fails", async () => {
     vi.stubGlobal(
       "fetch",
-      vi.fn(() => Promise.reject(new Error("Service is down"))),
+      vi.fn().mockRejectedValue(new Error("Service is down")),
     );
-    render(<ProductContainer />);
+    render(<ShopContainer />);
     expect(await screen.findByRole("paragraph")).toHaveTextContent(
       "Service is down",
     );
@@ -70,9 +65,9 @@ describe("Product container", () => {
   it("display error message when product fetch succeeds but response is unsuccessful", async () => {
     vi.stubGlobal(
       "fetch",
-      vi.fn(() => Promise.resolve({ ok: false, status: 500 })),
+      vi.fn().mockResolvedValue({ ok: false, status: 500 }),
     );
-    render(<ProductContainer />);
+    render(<ShopContainer />);
     expect(await screen.findByRole("paragraph")).toHaveTextContent(
       "Response status: 500",
     );

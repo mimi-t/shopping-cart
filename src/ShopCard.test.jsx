@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import ProductCard from "./ProductCard";
+import ShopCard from "./ShopCard";
 import userEvent from "@testing-library/user-event";
 
 describe("Product card", () => {
@@ -15,7 +15,7 @@ describe("Product card", () => {
     };
 
     render(
-      <ProductCard
+      <ShopCard
         key={product.id}
         title={product.title}
         description={product.description}
@@ -49,7 +49,7 @@ describe("Product card", () => {
     };
 
     render(
-      <ProductCard
+      <ShopCard
         key={product.id}
         title={product.title}
         description={product.description}
@@ -83,7 +83,7 @@ describe("Product card", () => {
     };
 
     render(
-      <ProductCard
+      <ShopCard
         key={product.id}
         title={product.title}
         description={product.description}
