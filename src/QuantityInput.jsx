@@ -16,12 +16,11 @@ function QuantityInput({
         setError(null);
         newQuantity = MAX_QUANTITY;
       }
+      setQuantity(newQuantity);
       if (newQuantity === 0 && deleteFromCart) {
         deleteFromCart();
       } else if (updateQuantityInCart) {
         updateQuantityInCart(newQuantity);
-      } else {
-        setQuantity(newQuantity);
       }
     }
   };
@@ -34,10 +33,9 @@ function QuantityInput({
         setError(null);
         newQuantity = MIN_QUANTITY;
       }
+      setQuantity(newQuantity);
       if (updateQuantityInCart) {
         updateQuantityInCart(newQuantity);
-      } else {
-        setQuantity(newQuantity);
       }
     }
   };
