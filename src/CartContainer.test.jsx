@@ -5,7 +5,6 @@ import { CartContext } from "./Contexts.js";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import PropTypes from "prop-types";
-const vi = globalThis.vi;
 
 const TestWrapper = ({ children, initialProducts }) => {
   const [products, setProducts] = useState(initialProducts);
