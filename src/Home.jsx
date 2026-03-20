@@ -17,9 +17,9 @@ function Home() {
           Explore our range of science-backed formulas engineered to nourish
           your skin.
         </p>
-        <button>
-          <Link to="/shop">Discover our collection</Link>
-        </button>
+        <Link to="/shop">
+          <button>Discover our collection</button>
+        </Link>
       </div>
     </main>
   );
