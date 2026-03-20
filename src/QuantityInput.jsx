@@ -5,22 +5,25 @@ function QuantityInput({
   quantity,
   setQuantity,
   updateQuantityInCart,
-  deleteFromCart,
+  showDeleteDialog,
   setError,
 }) {
   const decrementQuantity = () => {
+    // don't allow the user to decrement below the minimum value
     if (quantity > MIN_QUANTITY) {
       let newQuantity = quantity - 1;
+      // decrementing a quantity over the max value will set the new quantity to the max value
       if (quantity > MAX_QUANTITY) {
-        // decrementing a quantity that is over the max value will set the quantity to the max value
         setError(null);
         newQuantity = MAX_QUANTITY;
       }
-      setQuantity(newQuantity);
-      if (newQuantity === 0 && deleteFromCart) {
-        deleteFromCart();
-      } else if (updateQuantityInCart) {
-        updateQuantityInCart(newQuantity);
+      if (newQuantity === 0 && showDeleteDialog) {
+        showDeleteDialog();
+      } else {
+        setQuantity(newQuantity);
+        if (updateQuantityInCart) {
+          updateQuantityInCart(newQuantity);
+        }
       }
     }
   };
@@ -47,7 +50,7 @@ function QuantityInput({
 
   const updateCartQuantity = () => {
     if (quantity === 0) {
-      deleteFromCart();
+      showDeleteDialog();
     } else {
       // if invalid value show error message , also need to update for onaddtocart in ProductCard
       if (quantity < MIN_QUANTITY || quantity > MAX_QUANTITY) {
@@ -82,7 +85,7 @@ QuantityInput.propTypes = {
   quantity: PropTypes.number.isRequired,
   setQuantity: PropTypes.func.isRequired,
   updateQuantityInCart: PropTypes.func,
-  deleteFromCart: PropTypes.func,
+  showDeleteDialog: PropTypes.func,
   setError: PropTypes.func,
 };
 

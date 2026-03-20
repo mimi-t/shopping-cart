@@ -115,7 +115,7 @@ describe("Cart container", () => {
     );
   });
 
-  it("remove item from CartContainer when Delete button is clicked", async () => {
+  it("remove item from CartContainer when Delete button is clicked and deletion is confirmed", async () => {
     const productArr = [
       {
         id: 1,
@@ -169,6 +169,13 @@ describe("Cart container", () => {
       name: "Delete",
     });
     await user.click(deleteButton[0]);
+    expect(
+      await screen.findByText(
+        `Are you sure you want to delete ${productArr[0].title} from your cart?`,
+      ),
+    ).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "Confirm" }));
+
     expect(await screen.findAllByRole("img")).toHaveLength(1);
     expect(
       await screen.findByText("Eyeshadow Palette with Mirror"),

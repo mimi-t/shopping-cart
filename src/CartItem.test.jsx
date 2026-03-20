@@ -73,7 +73,11 @@ describe("Cart item", () => {
     expect(mockUpdateCartQuantity).toHaveBeenCalledWith(item.id, 1);
 
     await user.click(decrementButton);
-    expect(mockDeleteFromCart).toHaveBeenCalledWith(item.id);
+    expect(
+      await screen.findByText(
+        `Are you sure you want to delete ${item.title} from your cart?`,
+      ),
+    ).toBeInTheDocument();
   });
 
   it("display error message when inputting invalid quantity", async () => {

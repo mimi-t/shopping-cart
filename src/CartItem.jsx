@@ -2,6 +2,8 @@ import { useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import QuantityInput from "./QuantityInput";
 import { CartContext } from "./Contexts";
+import ConfirmDialog from "./ConfirmDialog";
+import { createPortal } from "react-dom";
 
 function CartItem({
   id,
@@ -11,9 +13,10 @@ function CartItem({
   initialQuantity,
   deleteProduct,
 }) {
-  const { deleteFromCart, updateCartQuantity } = useContext(CartContext);
+  const { updateCartQuantity } = useContext(CartContext);
   const [quantity, setQuantity] = useState(initialQuantity);
   const [quantityError, setQuantityError] = useState(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
     setQuantity(initialQuantity);
@@ -28,11 +31,20 @@ function CartItem({
         quantity={quantity}
         setQuantity={setQuantity}
         updateQuantityInCart={(qty) => updateCartQuantity(id, qty)}
-        deleteFromCart={() => deleteFromCart(id)}
+        showDeleteDialog={() => setIsDialogOpen(true)}
         setError={setQuantityError}
       />
       {quantityError && <div>{quantityError}</div>}
-      <button onClick={deleteProduct}>Delete</button>
+      <button onClick={() => setIsDialogOpen(true)}>Delete</button>
+      {isDialogOpen &&
+        createPortal(
+          <ConfirmDialog
+            description={`Are you sure you want to delete ${title} from your cart?`}
+            closeDialog={() => setIsDialogOpen(false)}
+            confirmAction={deleteProduct}
+          />,
+          document.body,
+        )}
     </div>
   );
 }
