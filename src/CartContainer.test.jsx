@@ -5,6 +5,7 @@ import { CartContext } from "./Contexts.js";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { expect } from "vitest";
 
 const TestWrapper = ({ children, initialProducts }) => {
   const [products, setProducts] = useState(initialProducts);
@@ -83,6 +84,8 @@ describe("Cart container", () => {
     );
 
     expect(await screen.findAllByRole("img")).toHaveLength(productArr.length);
+    expect(await screen.findByText("Total")).toBeInTheDocument();
+    expect(await screen.findByText("$69.96")).toBeInTheDocument();
   });
 
   it("display loading message while products are still being fetched", async () => {

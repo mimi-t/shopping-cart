@@ -61,6 +61,20 @@ function CartContainer() {
           />
         );
       })}
+      {detailedProducts.length > 0 && (
+        <div>
+          <p>Total</p>
+          <p>
+            $
+            {detailedProducts
+              .reduce(
+                (total, current) => total + current.quantity * current.price,
+                0,
+              )
+              .toFixed(2)}
+          </p>
+        </div>
+      )}
     </>
   );
 }
