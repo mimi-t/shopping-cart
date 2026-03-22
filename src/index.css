@@ -8,9 +8,19 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Philosopher";
+  src:
+    url("./assets/fonts/Philosopher-Regular.woff2") format("woff2"),
+    url("./assets/fonts/Philosopher-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --cream: rgb(255, 246, 230);
-  --dark-grey: #242424;
+  --cream: rgb(251 248 236);
+  --dark-grey: rgb(36 36 36);
 
   font-family: system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -64,6 +74,7 @@ a:hover {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-family: "Philosopher", system-ui, Helvetica, Arial, sans-serif;
 }
 
 button {
