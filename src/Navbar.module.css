@@ -1,13 +1,19 @@
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  position: sticky;
+  top: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
   width: 100%;
-  max-width: 1000px;
   margin: 0 auto;
-  padding: 1rem 0;
+  padding: 0.6rem 0;
+  background-color: var(--cream);
 }
 
 .main-link {
-  font-size: 1.5rem;
+  font-size: 2rem;
+}
+
+.main-link:hover {
+  text-decoration: none;
 }

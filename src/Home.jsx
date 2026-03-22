@@ -12,7 +12,7 @@ function Home() {
         />
       </div>
       <div className={styles["welcome-message"]}>
-        <h1>Fables</h1>
+        <h1 className="logo">Fables</h1>
         <p>
           Explore our range of science-backed formulas engineered to nourish
           your skin.
