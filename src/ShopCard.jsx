@@ -20,7 +20,7 @@ const ShopCard = ({ id, title, description, price, image }) => {
     <div className={styles["card"]}>
       <div className={styles["details"]}>
         <img src={image} />
-        <h2 className="title">{title}</h2>
+        <p className={styles["title"]}>{title}</p>
         <p className={styles["description"]}>{description}</p>
       </div>
       <div className={styles["actions"]}>
@@ -31,7 +31,7 @@ const ShopCard = ({ id, title, description, price, image }) => {
           setError={setQuantityError}
         />
         <button
-          className="add-to-cart"
+          className={styles["add-cart-btn"]}
           onClick={handleAddToCart}
           disabled={quantityError !== null}
         >

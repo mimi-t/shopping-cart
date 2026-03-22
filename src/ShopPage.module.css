@@ -2,11 +2,12 @@
   display: grid;
   place-items: center;
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 0 auto 2rem;
 }
 
 .heading {
   width: 100%;
+  margin-bottom: 1rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #acacac;
+  border-bottom: 1px solid var(--light-grey-2);
 }

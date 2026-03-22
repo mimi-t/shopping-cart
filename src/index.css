@@ -20,14 +20,17 @@
 
 :root {
   --cream: rgb(251 248 236);
-  --dark-grey: rgb(36 36 36);
+  --dark-grey-1: rgb(36 36 36);
+  --dark-grey-2: rgb(15, 15, 15);
+  --light-grey-1: rgb(77, 76, 76);
+  --light-grey-2: rgb(192, 192, 192);
 
   font-family: system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color: var(--cream);
-  background-color: var(--dark-grey);
+  background-color: var(--dark-grey-1);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -57,16 +60,16 @@ body {
   min-width: 100vw;
   min-height: 100vh;
   background-color: var(--cream);
-  color: var(--dark-grey);
+  color: var(--dark-grey-1);
 }
 
 a {
   font-weight: 500;
-  color: var(--dark-grey);
+  color: var(--dark-grey-1);
   text-decoration: inherit;
 }
 a:hover {
-  color: var(--dark-grey);
+  color: var(--dark-grey-1);
   font-weight: 700;
   text-decoration: underline;
 }
@@ -78,7 +81,7 @@ h1 {
 }
 
 button {
-  border: 1px solid var(--dark-grey);
+  border: 1px solid var(--dark-grey-1);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -88,7 +91,7 @@ button {
   transition: all 0.25s;
 }
 button:hover {
-  background-color: var(--dark-grey);
+  background-color: var(--dark-grey-1);
   color: var(--cream);
 }
 button:focus,
