@@ -1,12 +1,13 @@
 import styles from "./Home.module.css";
 import { Link } from "react-router";
+import heroImage from "./assets/images/home.jpg";
 
 function Home() {
   return (
     <main className={styles["container"]}>
       <div className={styles["hero-container"]}>
         <img
-          src="/home.jpg"
+          src={heroImage}
           className={styles["hero-image"]}
           alt="Perfume bottle balanced on wood"
         />
