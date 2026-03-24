@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { CartContext } from "./Contexts";
 import CartItem from "./CartItem";
+import styles from "./CartContainer.module.css";
 
 const SHOP_API = "https://dummyjson.com/";
 
@@ -62,18 +63,23 @@ function CartContainer() {
         );
       })}
       {detailedProducts.length > 0 && (
-        <div>
-          <p>Total</p>
-          <p>
-            $
-            {detailedProducts
-              .reduce(
-                (total, current) => total + current.quantity * current.price,
-                0,
-              )
-              .toFixed(2)}
-          </p>
-        </div>
+        <>
+          <div className={styles["total"]}>
+            <p>Total</p>
+            <p>
+              $
+              {detailedProducts
+                .reduce(
+                  (total, current) => total + current.quantity * current.price,
+                  0,
+                )
+                .toFixed(2)}
+            </p>
+          </div>
+          <div className={styles["checkout"]}>
+            <button className="primary-button">Proceed to Checkout</button>
+          </div>
+        </>
       )}
     </>
   );

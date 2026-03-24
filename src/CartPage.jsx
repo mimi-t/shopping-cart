@@ -1,10 +1,11 @@
 import CartContainer from "./CartContainer";
+import styles from "./CartPage.module.css";
 
 function CartPage() {
   return (
-    <main>
-      <h1>Cart</h1>
-      <div className="cart-container">
+    <main className={styles["container"]}>
+      <h1 className={styles["heading"]}>Cart</h1>
+      <div>
         <CartContainer />
       </div>
     </main>

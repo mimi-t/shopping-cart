@@ -99,6 +99,25 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.primary-button {
+  background-color: var(--dark-grey-1);
+  color: var(--cream);
+}
+.primary-button:hover {
+  background-color: var(--dark-grey-2);
+}
+
+.secondary-button:hover {
+  background-color: var(--cream);
+  color: var(--dark-grey-2);
+}
+
 .logo {
   font-family: "Italiana", system-ui, Helvetica, Arial, sans-serif;
+}
+
+dialog {
+  border: none;
+  background-color: var(--cream);
+  color: var(--dark-grey-1);
 }

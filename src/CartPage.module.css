@@ -1,0 +1,11 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto 2rem;
+}
+
+.heading {
+  width: 100%;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--light-grey-2);
+}

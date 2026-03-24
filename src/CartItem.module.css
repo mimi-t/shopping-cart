@@ -1,0 +1,35 @@
+.item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.thumbnail {
+  max-width: 164px;
+}
+
+.item-details {
+  width: 100%;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.bottom-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 3rem;
+}
+
+.title,
+.price {
+  font-weight: 700;
+}
+
+.trash-icon {
+  cursor: pointer;
+  width: 20px;
+}

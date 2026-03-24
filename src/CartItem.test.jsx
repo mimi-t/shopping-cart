@@ -75,7 +75,7 @@ describe("Cart item", () => {
     await user.click(decrementButton);
     expect(
       await screen.findByText(
-        `Are you sure you want to delete ${item.title} from your cart?`,
+        `Are you sure you want to remove ${item.title} from your cart?`,
       ),
     ).toBeInTheDocument();
   });

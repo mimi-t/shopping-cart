@@ -1,0 +1,11 @@
+.total {
+  display: flex;
+  gap: 3rem;
+  justify-content: flex-end;
+  font-weight: 700;
+}
+
+.checkout {
+  text-align: end;
+  margin-top: 1rem;
+}

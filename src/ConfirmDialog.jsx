@@ -1,14 +1,21 @@
 import PropTypes from "prop-types";
-
+import styles from "./ConfirmDialog.module.css";
 function ConfirmDialog({ description, closeDialog, confirmAction }) {
   return (
-    <dialog open>
-      <p>{description}</p>
-      <div>
-        <button onClick={closeDialog}>Close</button>
-        <button onClick={confirmAction}>Confirm</button>
-      </div>
-    </dialog>
+    <>
+      <div onClick={closeDialog} className={styles["overlay"]}></div>
+      <dialog open className={styles["dialog"]}>
+        <p>{description}</p>
+        <div className={styles["button-container"]}>
+          <button onClick={closeDialog} className="secondary-button">
+            Cancel
+          </button>
+          <button onClick={confirmAction} className="primary-button">
+            Confirm
+          </button>
+        </div>
+      </dialog>
+    </>
   );
 }
 

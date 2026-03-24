@@ -174,7 +174,7 @@ describe("Cart container", () => {
     await user.click(deleteButton[0]);
     expect(
       await screen.findByText(
-        `Are you sure you want to delete ${productArr[0].title} from your cart?`,
+        `Are you sure you want to remove ${productArr[0].title} from your cart?`,
       ),
     ).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Confirm" }));
