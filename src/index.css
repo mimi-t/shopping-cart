@@ -50,14 +50,13 @@ html {
 
 #root {
   min-height: 100vh;
-  min-width: 100vw;
+  width: 100%;
 }
 
 body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 100vw;
   min-height: 100vh;
   background-color: var(--cream);
   color: var(--dark-grey-1);

@@ -1,14 +1,17 @@
-.navbar {
+.navbar-container {
   position: sticky;
   top: 0;
+  width: 100%;
+  padding: 0.6rem 0;
+  background-color: var(--cream);
+}
+
+.navbar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   place-items: center;
-  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0.6rem 0;
-  background-color: var(--cream);
 }
 .navbar > a:first-child {
   justify-self: start;
