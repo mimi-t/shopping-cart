@@ -1,0 +1,33 @@
+.quantity {
+  display: flex;
+  height: 2.7rem;
+  border: 1px solid var(--light-grey-2);
+  cursor: pointer;
+}
+.quantity:hover {
+  border: 1px solid var(--dark-grey-1);
+}
+
+.decrement-button,
+.increment-button {
+  border: none;
+  padding: 0.6rem;
+}
+
+.number-input {
+  flex-grow: 1;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+.number-input::-webkit-outer-spin-button,
+.number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.number-input:focus {
+  outline: none;
+}

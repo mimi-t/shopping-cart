@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { MIN_QUANTITY, MAX_QUANTITY } from "./Constants";
+import styles from "./QuantityInput.module.css";
 
 function QuantityInput({
   quantity,
@@ -62,8 +63,13 @@ function QuantityInput({
   };
 
   return (
-    <div className="quantity">
-      <button onClick={decrementQuantity}>-</button>
+    <div className={styles["quantity"]}>
+      <button
+        onClick={decrementQuantity}
+        className={`${styles["decrement-button"]} secondary-button`}
+      >
+        -
+      </button>
       <input
         type="number"
         name="quantity"
@@ -75,8 +81,14 @@ function QuantityInput({
         onBlur={() => updateCartQuantity()}
         min={MIN_QUANTITY}
         max={MAX_QUANTITY}
+        className={styles["number-input"]}
       />
-      <button onClick={incrementQuantity}>+</button>
+      <button
+        onClick={incrementQuantity}
+        className={`${styles["increment-button"]} secondary-button`}
+      >
+        +
+      </button>
     </div>
   );
 }

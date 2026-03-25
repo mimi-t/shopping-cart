@@ -6,6 +6,7 @@
 
 .thumbnail {
   max-width: 164px;
+  object-fit: contain;
 }
 
 .item-details {
@@ -31,5 +32,18 @@
 
 .trash-icon {
   cursor: pointer;
+  width: 20px;
+}
+
+.error-container {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+  margin-right: 0;
+  padding: 0 0.8rem;
+  border: 1px solid var(--light-grey-2);
+}
+
+.alert-icon {
   width: 20px;
 }

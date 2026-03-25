@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import trashIcon from "./assets/icons/trash-can.svg";
-
+import alertIcon from "./assets/icons/alert-circle.svg";
 import PropTypes from "prop-types";
 import QuantityInput from "./QuantityInput";
 import { CartContext } from "./Contexts";
@@ -48,7 +48,16 @@ function CartItem({
           />
           <p className={styles["price"]}>${price}</p>
         </div>
-        {quantityError && <div>{quantityError}</div>}
+        {quantityError && (
+          <div className={styles["error-container"]}>
+            <img
+              src={alertIcon}
+              alt="alert icon"
+              className={styles["alert-icon"]}
+            />
+            <p>{quantityError}</p>
+          </div>
+        )}
       </div>
       {isDialogOpen &&
         createPortal(
