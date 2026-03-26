@@ -5,7 +5,6 @@ import { CartContext } from "./Contexts.js";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { expect } from "vitest";
 
 const TestWrapper = ({ children, initialProducts }) => {
   const [products, setProducts] = useState(initialProducts);
@@ -83,7 +82,12 @@ describe("Cart container", () => {
       { wrapper: MemoryRouter },
     );
 
-    expect(await screen.findAllByRole("img")).toHaveLength(productArr.length);
+    expect(
+      await screen.findByRole("img", { name: "Essence Mascara Lash Princess" }),
+    ).toBeInTheDocument();
+    expect(
+      await screen.findByRole("img", { name: "Eyeshadow Palette with Mirror" }),
+    ).toBeInTheDocument();
     expect(await screen.findByText("Total")).toBeInTheDocument();
     expect(await screen.findByText("$69.96")).toBeInTheDocument();
   });
@@ -168,7 +172,7 @@ describe("Cart container", () => {
     );
 
     const user = userEvent.setup();
-    const deleteButton = await screen.findAllByRole("button", {
+    const deleteButton = await screen.findAllByRole("img", {
       name: "Delete",
     });
     await user.click(deleteButton[0]);
@@ -179,9 +183,9 @@ describe("Cart container", () => {
     ).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Confirm" }));
 
-    expect(await screen.findAllByRole("img")).toHaveLength(1);
     expect(
       await screen.findByText("Eyeshadow Palette with Mirror"),
     ).toBeInTheDocument();
+    expect(screen.queryByText("Essence Mascara Lash Princess")).toBeNull();
   });
 });

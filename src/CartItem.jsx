@@ -34,7 +34,7 @@ function CartItem({
           <img
             onClick={() => setIsDialogOpen(true)}
             src={trashIcon}
-            alt="Delete button"
+            alt="Delete"
             className={styles["trash-icon"]}
           />
         </div>

@@ -23,13 +23,13 @@ describe("Cart item", () => {
       />,
     );
     expect(
-      screen.getByRole("img", { src: item.thumbnail }),
+      screen.getByRole("img", { name: "Essence Mascara Lash Princess" }),
     ).toBeInTheDocument();
     const paragraphs = screen.getAllByRole("paragraph");
     expect(paragraphs[0]).toHaveTextContent(item.title);
     expect(paragraphs[1]).toHaveTextContent(`$${item.price}`);
     expect(screen.getByRole("spinbutton")).toHaveValue(item.quantity);
-    expect(screen.getByRole("button", { name: "Delete" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Delete" })).toBeInTheDocument();
   });
 
   it("increment and decrement quantity", async () => {
