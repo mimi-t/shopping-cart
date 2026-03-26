@@ -6,7 +6,9 @@ const ErrorPage = () => {
     <div className={styles["container"]}>
       <h1>This page doesn&apos;t exist.</h1>
       <p>Our apologies, we encountered an unexpected error.</p>
-      <Link to="/">Go to Home</Link>
+      <Link to="/">
+        <button className={styles["home-button"]}>Go to Home</button>
+      </Link>
     </div>
   );
 };
