@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { MIN_QUANTITY, MAX_QUANTITY } from "./Constants";
 import styles from "./QuantityInput.module.css";
+import { useState } from "react";
 
 function QuantityInput({
   quantity,
@@ -9,10 +10,12 @@ function QuantityInput({
   showDeleteDialog,
   setError,
 }) {
+  const [prevQuantity, setPrevQuantity] = useState(null);
   const decrementQuantity = () => {
     // don't allow the user to decrement below the minimum value
+    setPrevQuantity(quantity);
     if (quantity > MIN_QUANTITY) {
-      let newQuantity = quantity - 1;
+      let newQuantity = parseInt(quantity) - 1;
       // decrementing a quantity over the max value will set the new quantity to the max value
       if (quantity > MAX_QUANTITY) {
         setError(null);
@@ -31,7 +34,8 @@ function QuantityInput({
 
   const incrementQuantity = () => {
     if (quantity < MAX_QUANTITY) {
-      let newQuantity = quantity + 1;
+      setPrevQuantity(quantity);
+      let newQuantity = parseInt(quantity) + 1;
       if (quantity > MAX_QUANTITY) {
         // incrementing a quantity that is under the min value will set the quantity to the min value
         setError(null);
@@ -46,18 +50,38 @@ function QuantityInput({
 
   const handleChangeQuantity = (event) => {
     setError(null);
-    setQuantity(parseInt(event.target.value));
+    const newQuantity = event.target.value;
+    setQuantity(newQuantity);
+    // Handle 0 quantity by showing delete dialog
+    if (newQuantity === 0) {
+      if (showDeleteDialog) {
+        showDeleteDialog();
+      }
+    } else if (newQuantity >= MIN_QUANTITY && newQuantity <= MAX_QUANTITY) {
+      // Validate and update cart immediately on change
+      if (updateQuantityInCart) {
+        updateQuantityInCart(newQuantity);
+      }
+    } else {
+      // Show error for invalid quantities
+      setError("Invalid quantity, please enter a number between 0 to 99.");
+    }
   };
 
   const updateCartQuantity = () => {
+    setPrevQuantity(quantity);
     if (quantity === 0) {
       showDeleteDialog();
+    } else if (isNaN(quantity)) {
+      // if value is NaN (e.g. empty string), set quantity to the previous valid quantity inputted
+      setQuantity(prevQuantity);
     } else {
-      // if invalid value show error message , also need to update for onaddtocart in ProductCard
+      // if invalid value show error message
+      setPrevQuantity(quantity);
       if (quantity < MIN_QUANTITY || quantity > MAX_QUANTITY) {
         setError("Invalid quantity, please enter a number between 0 to 99.");
       } else if (updateQuantityInCart) {
-        updateQuantityInCart(quantity);
+        updateQuantityInCart(parseInt(quantity));
       }
     }
   };
@@ -65,6 +89,7 @@ function QuantityInput({
   return (
     <div className={styles["quantity"]}>
       <button
+        title="Decrease quantity"
         onClick={decrementQuantity}
         className={`${styles["decrement-button"]} secondary-button`}
       >
@@ -78,12 +103,13 @@ function QuantityInput({
           ["e", "E", "+", "-"].includes(event.key) && event.preventDefault()
         }
         onChange={handleChangeQuantity}
-        onBlur={() => updateCartQuantity()}
+        onBlur={updateCartQuantity}
         min={MIN_QUANTITY}
         max={MAX_QUANTITY}
         className={styles["number-input"]}
       />
       <button
+        title="Increase quantity"
         onClick={incrementQuantity}
         className={`${styles["increment-button"]} secondary-button`}
       >

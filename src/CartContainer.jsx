@@ -10,6 +10,7 @@ function CartContainer() {
   const [detailedProducts, setDetailedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const productIds = products.map((p) => p.id).join(",");
 
   useEffect(() => {
     const getCartProducts = async () => {
@@ -39,6 +40,19 @@ function CartContainer() {
       }
     };
     getCartProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productIds]);
+
+  // Update quantities in detailedProducts when products quantities change
+  useEffect(() => {
+    setDetailedProducts((prevDetailed) =>
+      prevDetailed.map((detailed) => {
+        const updatedProduct = products.find((p) => p.id === detailed.id);
+        return updatedProduct
+          ? { ...detailed, quantity: updatedProduct.quantity }
+          : detailed;
+      }),
+    );
   }, [products]);
 
   if (loading) {
