@@ -19,7 +19,9 @@ function Home() {
           your skin.
         </p>
         <Link to="/shop">
-          <button>Discover our collection</button>
+          <button className={styles["discover-button"]}>
+            Discover our collection
+          </button>
         </Link>
       </div>
     </main>
