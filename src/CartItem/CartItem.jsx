@@ -1,10 +1,10 @@
 import { useState, useContext, useEffect } from "react";
-import trashIcon from "./assets/icons/trash-can.svg";
-import alertIcon from "./assets/icons/alert-circle.svg";
+import trashIcon from "../assets/icons/trash-can.svg";
+import alertIcon from "../assets/icons/alert-circle.svg";
 import PropTypes from "prop-types";
-import QuantityInput from "./QuantityInput";
-import { CartContext } from "./Contexts";
-import ConfirmDialog from "./ConfirmDialog";
+import QuantityInput from "../QuantityInput/QuantityInput";
+import { CartContext } from "../Contexts";
+import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
 import { createPortal } from "react-dom";
 import styles from "./CartItem.module.css";
 

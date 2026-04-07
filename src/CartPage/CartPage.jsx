@@ -1,4 +1,4 @@
-import CartContainer from "./CartContainer";
+import CartContainer from "../CartContainer/CartContainer";
 import styles from "./CartPage.module.css";
 
 function CartPage() {

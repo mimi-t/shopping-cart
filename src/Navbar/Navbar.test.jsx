@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import Navbar from "./Navbar.jsx";
-import { CartContext } from "./Contexts.js";
+import { CartContext } from "../Contexts.js";
 
 describe("Navigation bar", () => {
   it("links open correct pages", async () => {

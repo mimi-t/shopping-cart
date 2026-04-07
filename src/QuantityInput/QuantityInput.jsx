@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { MIN_QUANTITY, MAX_QUANTITY } from "./Constants";
+import { MIN_QUANTITY, MAX_QUANTITY } from "../Constants";
 import styles from "./QuantityInput.module.css";
 import { useState } from "react";
 

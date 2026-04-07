@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import CartContainer from "./CartContainer.jsx";
-import { CartContext } from "./Contexts.js";
+import { CartContext } from "../Contexts.js";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import PropTypes from "prop-types";

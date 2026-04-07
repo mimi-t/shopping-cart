@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
-import { CartContext } from "./Contexts";
-import CartItem from "./CartItem";
+import { CartContext } from "../Contexts";
+import CartItem from "../CartItem/CartItem";
 import styles from "./CartContainer.module.css";
 
 const SHOP_API = "https://dummyjson.com/";

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import CartPage from "./CartPage.jsx";
-import { CartContext } from "./Contexts.js";
+import { CartContext } from "../Contexts.js";
 import { useState } from "react";
 import PropTypes from "prop-types";
 

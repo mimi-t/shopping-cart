@@ -1,4 +1,4 @@
-import ShopCard from "./ShopCard";
+import ShopCard from "../ShopCard/ShopCard";
 import { useState, useEffect } from "react";
 import styles from "./ShopContainer.module.css";
 
