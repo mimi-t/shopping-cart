@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import CartItem from "./CartItem";
-import { CartContext } from "./Contexts.js";
+import { CartContext } from "../Contexts.js";
 import userEvent from "@testing-library/user-event";
 
 describe("Cart item", () => {

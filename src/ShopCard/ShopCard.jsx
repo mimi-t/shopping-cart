@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { useState, useContext } from "react";
-import { CartContext } from "./Contexts.js";
+import { CartContext } from "../Contexts.js";
 import styles from "./ShopCard.module.css";
-import QuantityInput from "./QuantityInput.jsx";
+import QuantityInput from "../QuantityInput/QuantityInput.jsx";
 
 const ShopCard = ({ id, title, description, price, image }) => {
   const [quantity, setQuantity] = useState(0);

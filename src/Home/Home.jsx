@@ -1,6 +1,6 @@
 import styles from "./Home.module.css";
 import { Link } from "react-router";
-import heroImage from "./assets/images/home.jpg";
+import heroImage from "../assets/images/home.jpg";
 
 function Home() {
   return (

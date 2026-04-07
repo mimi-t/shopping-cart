@@ -1,4 +1,4 @@
-import ShopContainer from "./ShopContainer";
+import ShopContainer from "../ShopContainer/ShopContainer";
 import styles from "./ShopPage.module.css";
 
 const ShopPage = () => {
